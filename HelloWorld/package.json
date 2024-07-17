@@ -1,0 +1,22 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "node ",
+  "main": "hello.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lavanya0404/Node-JS.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Lavanya Y M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lavanya0404/Node-JS/issues"
+  },
+  "homepage": "https://github.com/lavanya0404/Node-JS#readme"
+}
