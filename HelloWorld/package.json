@@ -4,7 +4,8 @@
   "description": "node ",
   "main": "hello.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start" : "node hello.js"
   },
   "repository": {
     "type": "git",
