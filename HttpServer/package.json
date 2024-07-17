@@ -1,0 +1,19 @@
+{
+  "name": "httpserver",
+  "version": "1.0.0",
+  "description": "node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lavanya0404/Node-JS.git"
+  },
+  "author": "Lavanya Ym",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lavanya0404/Node-JS/issues"
+  },
+  "homepage": "https://github.com/lavanya0404/Node-JS#readme"
+}
