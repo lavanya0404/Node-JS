@@ -1,20 +1,35 @@
-1721213271739: New request: Recieved
-/contact
-1721213272112: New request: Recieved
-/favicon.ico
-1721213284245: New request: Recieved
-/
-1721213284885: New request: Recieved
-/favicon.ico
-1721213289123: New request: Recieved
+1721214501184: New request: Recieved
 /about
-1721213289199: New request: Recieved
-/favicon.ico
-1721213316438: New request: Recieved
-/contatc
-1721213316526: New request: Recieved
-/favicon.ico
-1721213331018: New request: Recieved
-/about
-1721213331089: New request: Recieved
-/favicon.ico
+1721214512289: New request: Recieved
+/about/?myName=lavanya
+1721214519212: New request: Recieved
+/about?myName=lavanya
+1721214674350: New request: Recieved
+/search/search_query=javascript+tic+tac+toe
+1721214695115: New request: Recieved
+/search?search_query=javascript+tic+tac+toe
+1721215167807: New request: Recieved /search?search_query=javascript+tic+tac+toe GET
+1721215296965: New request Recieved
+ requested URL:/search?search_query=javascript+tic+tac+toe
+ Requested method : GET
+1721215359571: New request Recieved
+ requested URL:/about/?myName=lavanya
+ Requested method : GET
+1721215365453: New request Recieved
+ requested URL:/about?myName=lavanya
+ Requested method : GET
+1721215522621: New request Recieved
+ requested URL:/signup
+ Requested method : GET
+1721215532765: New request Recieved
+ requested URL:/signup
+ Requested method : GET
+1721215539932: New request Recieved
+ requested URL:/signup
+ Requested method : GET
+1721215548747: New request Recieved
+ requested URL:/signup
+ Requested method : GET
+1721215576236: New request Recieved
+ requested URL:/signup
+ Requested method : GET

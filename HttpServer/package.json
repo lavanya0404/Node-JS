@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/lavanya0404/Node-JS/issues"
   },
-  "homepage": "https://github.com/lavanya0404/Node-JS#readme"
+  "homepage": "https://github.com/lavanya0404/Node-JS#readme",
+  "dependencies": {
+    "url": "^0.11.3"
+  }
 }
