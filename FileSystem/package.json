@@ -1,20 +1,17 @@
 {
   "name": "filesystem",
   "version": "1.0.0",
-  "description": "node ",
-  "main": "hello.js",
+  "description": "node js",
+  "main": "file.js",
   "scripts": {
-    "test": "jest",
-    "start": "node hello.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node file.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lavanya0404/Node-JS.git"
   },
-  "keywords": [
-    "node"
-  ],
-  "author": "Lavanya Y M",
+  "author": "Lavanya YM",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lavanya0404/Node-JS/issues"
