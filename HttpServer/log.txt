@@ -33,3 +33,12 @@
 1721215576236: New request Recieved
  requested URL:/signup
  Requested method : GET
+1721279193252: New request Recieved
+ requested URL:/
+ Requested method : GET
+1721279201093: New request Recieved
+ requested URL:/about
+ Requested method : GET
+1721279208002: New request Recieved
+ requested URL:/about?myName=lavanya
+ Requested method : GET

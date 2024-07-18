@@ -1,0 +1,26 @@
+// Version 
+4.19.2
+
+1st part -> 4
+ - Major release 
+ - Also breaking update 
+ - Update only while bulding new project 
+ - For existing it is reccomended not to use latest version
+
+2nd part -> 19
+ - Recommended bug fixed 
+ - Critical bug fixed
+ - Update is Recommended
+ - added a feature 
+
+3rd part -> 2 
+  -minor fixes (Optional updates)
+  -doesnt matter if we update or not
+
+^4.18.2 --> | 4.18.2 -> < 5.0.0 |
+ - lock Major release version
+ - update minor & reccomended releases if necessary (18 & 2)
+
+~4.18.2 --> | 4.18.2 -> < 4.19.0 |
+ - lock Major and Recommended release version
+ - update only minor releases if necessary (2)

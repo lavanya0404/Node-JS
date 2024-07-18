@@ -1,7 +1,10 @@
 const http = require("http")
 const fs = require("fs")
 const url = require("url")
-const myServer = http.createServer((req, res) => {
+const express = require("express")
+
+//app is similar to myHandler and its built in module
+function myHandler(req, res) {
   if (req.url == "/favicon.ico") return res.end()
   const log = `${Date.now()}: New request Recieved\n requested URL:${
     req.url
@@ -23,11 +26,10 @@ const myServer = http.createServer((req, res) => {
         const search_query = myURL.query.search_query
         res.end(`Search Results for: ${search_query}`)
         break
-      case '/signup':
-        if(req.method =="GET"){
+      case "/signup":
+        if (req.method == "GET") {
           res.end("This is sign up form")
-        }
-        else if(req.method==='POST'){
+        } else if (req.method === "POST") {
           res.end("Successfully registered")
         }
         break
@@ -36,5 +38,28 @@ const myServer = http.createServer((req, res) => {
         res.end("Invalid URL")
     }
   })
+}
+
+const app = express()
+app.get("/", (req, res, next) => {
+  return res.send("Hello from Home page")
 })
-myServer.listen(8000, () => console.log("server started"))
+app.get("/about", (req, res, next) => {
+  return res.send(
+    // "Hello from about page" +
+    //   " hey " +
+    //   req.query.name +
+    //   " you are " +
+    //   req.query.age +
+    //   " years old."
+    `Hello ${req.query.name} you are ${req.query.age} years old`
+  )
+})
+app.get("/contact", (req, res, next) => {
+  return res.send("Hello from contact page")
+})
+
+app.listen(8000, () => console.log("Server is listening at port 8000"))
+
+// const myServer = http.createServer(app)
+// myServer.listen(8000, () => ("server started"))
