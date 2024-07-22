@@ -1,0 +1,23 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "node js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lavanya0404/Node-JS.git"
+  },
+  "author": "Lavanya Y M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lavanya0404/Node-JS/issues"
+  },
+  "homepage": "https://github.com/lavanya0404/Node-JS#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
