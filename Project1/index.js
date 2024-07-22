@@ -77,9 +77,10 @@ app.post("/api/users", (req, res) => {
   // console.log(body)
   users.push({ ...body, id: users.length + 1 })
   fs.writeFile("./mockData.json", JSON.stringify(users), (err, data) => {
-    return res.json({ statusbar: "Succes", id: users.length })
+    return res.status(201).json({ statusbar: "Succes", id: users.length })
   })
 })
+
 // app.get("/api/users/:id", (req, res) => {
 //   const id = Number(req.params.id)
 //   const user = users.find((user) => user.id == id)
