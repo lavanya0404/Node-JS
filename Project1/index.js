@@ -1,21 +1,60 @@
 const express = require("express")
-const users = require("./mockData.json")
 const fs = require("fs")
+const mongoose = require("mongoose")
 const app = express()
 const PORT = 8000
+mongoose
+  .connect("mongodb://127.0.0.1:27017/project1")
+  .then(() => console.log("Mongoose connect success"))
+  .catch((err) => console.log("Moongose error", err))
+const userSchema = new mongoose.Schema(
+  {
+    first_name: {
+      type: String,
+      required: true,
+    },
+    last_name: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+        validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+        message: "Please enter a valid email address",
+      },
+    },
+    gender: {
+      type: String,
+      required: true,
+      //enum: ["Male", "Female", "Other"],
+    },
+    job_title: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+)
+const User = mongoose.model("user", userSchema)
 app.use(express.urlencoded({ extended: false }))
 app.use((req, res, next) => {
   fs.appendFile(
     "log.txt",
     `\n${Date.now()}: ${req.method} ${req.path}`,
     (err, data) => {
-      next();
+      next()
     }
   )
 })
-app.get("/users", (req, res) => {
+app.get("/users", async (req, res) => {
+  const allDbUsers = await User.find({})
   const html = `<ul>
-  ${users.map((user) => `<li>${user.first_name}</li>`).join(" ")}
+  ${allDbUsers
+    .map((user) => `<li>${user.first_name} - ${user.email}</li>`)
+    .join(" ")}
   </ul>`
   res.send(html)
 })
@@ -29,7 +68,7 @@ app
   .get((req, res) => {
     const id = Number(req.params.id)
     const user = users.find((user) => user.id == id)
-    if(!user) return res.status(404).json({error: "User not found"})
+    if (!user) return res.status(404).json({ error: "User not found" })
     return res.json(user)
   })
   .patch((req, res) => {
@@ -73,17 +112,28 @@ app
     return res.json({ statusbar: "Pending" })
   })
 
-app.post("/api/users", (req, res) => {
+app.post("/api/users", async (req, res) => {
   const body = req.body
-  if(!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title){
+  if (
+    !body ||
+    !body.first_name ||
+    !body.last_name ||
+    !body.email ||
+    !body.gender ||
+    !body.job_title
+  ) {
     return res.status(400).json({ error: "Missing required fields." })
-    
   }
   // console.log(body)
-  users.push({ ...body, id: users.length + 1 })
-  fs.writeFile("./mockData.json", JSON.stringify(users), (err, data) => {
-    return res.status(201).json({ statusbar: "Succes", id: users.length })
+  const result = await User.create({
+    first_name: body.first_name,
+    last_name: body.last_name,
+    email: body.email,
+    gender: body.gender,
+    job_title: body.job_title,
   })
+  console.log(result)
+  return res.status(201).json({ statusbar: "Succes", id: result._id })
 })
 
 // app.get("/api/users/:id", (req, res) => {
