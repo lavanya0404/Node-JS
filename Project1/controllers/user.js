@@ -1,80 +1,81 @@
-const users = require("../models/user")
+
+const User = require("../models/user")
 async function handleGetAllUSer(req, res) {
-  const allDbUsers = await users.find()
+  const allDbUsers = await User.find()
   return res.json(allDbUsers)
 }
 async function handleGetUserById(req, res) {
-  const id = Number(req.params.id)
-  const user = users.findById(id)
+  const id = (req.params.id)
+  const user = await User.findById(id)
   if (!user) return res.status(404).json({ error: "User not found" })
   return res.json(user)
 }
 async function handleUpdateUserById(req, res) {
-  {
-    const id = Number(req.params.id)
-    const updateUser = req.body
+  try {
+    const id = req.params.id;
+    const body = req.body;
 
-    users.forEach((user, index) => {
-      if (user.id === id) {
-        users[index] = { ...user, ...updateUser }
-      }
-    })
-
-    fs.writeFile("./mockData.json", JSON.stringify(users), (err, data) => {
-      if (err) {
-        console.error(err)
-        return res.status(500).json({ error: "Failed to update user." })
-      }
-      return res.json({
-        status: "Success",
-        updatedUser: users.find((user) => user.id === id),
-      })
-    })
-  }
-}
-async function handleDeleteUserById(req, res) {
-  const id = Number(req.params.id)
-
-  const index = users.findIndex((user) => user.id === id)
-  if (index !== -1) {
-    users.splice(index, 1)
-  }
-
-  fs.writeFile("./mockData.json", JSON.stringify(users), (err, data) => {
-    if (err) {
-      console.error(err)
-      return res.status(500).json({ error: "Failed to delete user." })
+    // Validate input
+    if (!body || !body.first_name || !body.email || !body.gender || !body.job_title) {
+      return res.status(400).json({ error: "Missing required fields." });
     }
-    return res.json({ status: "Success", deletedUserId: id })
-  })
+
+    // Perform the update
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        firstName: body.first_name,
+        lastName: body.last_name,
+        email: body.email,
+        gender: body.gender,
+        job_title: body.job_title,
+      },
+      { new: true } // This option returns the updated document
+    );
+
+    // Check if user was found and updated
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    return res.json({ status: "Success", user: updatedUser });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 }
-async function createNewUser(req, res) {
+
+async function handleDeleteUserById(req, res) {
+  const id = (req.params.id)
+  await User.findByIdAndDelete(id)
+  return res.json({status: 'success'})
+}
+async function handleCreateNewUser(req, res) {
   const body = req.body
   if (
     !body ||
     !body.first_name ||
-    !body.last_name ||
     !body.email ||
     !body.gender ||
     !body.job_title
   ) {
     return res.status(400).json({ error: "Missing required fields." })
   }
-  // console.log(body)
+  //console.log(body)
   const result = await User.create({
-    first_name: body.first_name,
-    last_name: body.last_name,
+    firstName: body.first_name,
+    lastName: body.last_name,
     email: body.email,
     gender: body.gender,
     job_title: body.job_title,
   })
   console.log(result)
-  return res.status(201).json({ statusbar: "Succes", id: result._id })
+  return res.status(201).json({ msg: "Succes", id: result._id })
 }
 module.exports = {
   handleGetAllUSer,
   handleGetUserById,
   handleUpdateUserById,
   handleDeleteUserById,
-  createNewUser,
+  handleCreateNewUser,
 }
